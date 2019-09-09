@@ -14,14 +14,14 @@ function getGifs(path,term){
         url: `${giphy_endpoint}/gifs/${path}?api_key=${API_KEY}&q=${term}`,//link to ask information
         type: "GET",
         dataType: "json",
-        success: function(data){
+        success: (data) => {
             console.log(data)
             for(var i=0; i<data.data.length; i++){
                 results.innerHTML +=`
                 <img class="image" src="${data.data[i].images.preview_gif.url}">`
             }
         },
-        error: function(error){
+        error: (error) => {
             console.log("There was an error")
         }
     })
@@ -29,9 +29,9 @@ function getGifs(path,term){
 
 //call functions and/or add event listeners
 searchForm.addEventListener('submit',function(event){
-    event.preventDefault()
-    results.innerHTML = ''
-    getGifs("search", searchInput.value)
+    event.preventDefault();
+    results.innerHTML = '';
+    getGifs("search", searchInput.value);
 })
 
 
